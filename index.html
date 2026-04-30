@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JS Frameworks</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      max-width: 700px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1 {
+      color: #080440;
+      font: cursive;
+    }
+    h3 {
+      color: #FC0000 ;
+    }
+    .card {
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 16px;
+      margin: 12px 0;
+      overflow: hidden;
+    }
+    .card img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      float: right;
+    }
+    .card h2 {
+      margin: 0 0 6px 0;
+    }
+    .card p {
+      margin: 0 0 10px 0;
+      color: #28B869;
+      font-size: 14px;
+    }
+    .badge {
+      display: inline-block;
+      background: #B828B1;
+      border-radius: 4px;
+      padding: 2px 8px;
+      font-size: 12px;
+      margin-right: 4px;
+    }
+  </style>
+</head>
+<body>
+  <h1>JS Frameworks</h>
+  <h1>What is this</h1>
+  <h2>Kevin</h2>
+  <h2>Timmothy</h2>
+  <h3>X-2</h3>
+  <h4>program</h4>
+  <div id="list">Loading...</div>
+
+  <script>
+    async function loadFrameworks() {
+      var response = await fetch("https://pb-irc.artesparadox.net/api/collections/js_framework/records");
+      var data = await response.json();
+      var list = document.getElementById("list");
+
+      list.innerHTML = "";
+
+      data.items.forEach(function(fw) {
+        list.innerHTML += "<div class='card'>" +
+          "<img src='" + fw.logo + "' alt='" + fw.name + "'>" +
+          "<h2>" + fw.name + "</h2>" +
+          "<p>" + fw.description + "</p>" +
+          "<span class='badge'>Age: " + fw.age + "</span>" +
+          "<span class='badge'>Complexity: " + fw.complexity + "</span>" +
+          "</div>";
+      });
+    }
+
+    loadFrameworks();
+  </script>
+</body>
+</html>
